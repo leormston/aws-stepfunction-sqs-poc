@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Cloudformation Template for Cavendish's Shared Resources
+
+Resources:
+  siteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: sf-sqs-poc-unique
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+      Tags:
+        - Key: Name
+          Value: sf-sqs-poc-unique
+
+  siteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref siteBucket
+      PolicyDocument:
+        Statement:
+          - Action:
+              - s3:GetObject
+            Effect: Allow
+            Resource: !Join ['', ['arn:aws:s3:::', !Ref siteBucket, '/*']]
+            Principal:
+              AWS: '*'
+        Version: '2012-10-17'
