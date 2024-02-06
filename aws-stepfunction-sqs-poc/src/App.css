@@ -3,10 +3,25 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
+.box1 {
+  padding: 10px;
+  margin: 30px;
+  width: 50%;
+}
+
+.box2 {
+  padding: 10px;
+  align-items: center;
+  margin: 30px;
+
+}
+.midWidth {
+  width: 50%;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
